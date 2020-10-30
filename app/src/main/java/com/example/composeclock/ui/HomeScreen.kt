@@ -20,12 +20,14 @@ fun HomeScreen() {
   Column(modifier = Modifier.fillMaxHeight()) {
     Clock(
       strokeWidth = 48.dp,
+      speedMultiplier = 5f,
       modifier = Modifier.weight(1f).fillMaxWidth().padding(48.dp),
       color = if (MaterialTheme.colors.isLight) Color.Black else Color.White
     )
     Clock(
       timeZone = TimeZone.getTimeZone("UTC"),
       strokeWidth = 12.dp,
+      speedMultiplier = 5f,
       modifier = Modifier.weight(1f).fillMaxWidth().padding(48.dp),
       color = if (MaterialTheme.colors.isLight) Color.Black else Color.White
     )
