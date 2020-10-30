@@ -1,6 +1,5 @@
 package com.example.composeclock.ui.components
 
-import android.util.Log
 import androidx.compose.animation.core.AnimationConstants.Infinite
 import androidx.compose.animation.core.FloatPropKey
 import androidx.compose.animation.core.repeatable
@@ -24,15 +23,6 @@ import com.example.composeclock.ui.theme.ComposeClockTheme
 import java.util.*
 import kotlin.math.cos
 import kotlin.math.sin
-
-//class LongPropKey : PropKey<Long, AnimationVector1D> {
-//  override val typeConverter: TwoWayConverter<Long, AnimationVector1D>
-//    get() = TwoWayConverter(
-//      convertFromVector = { return@TwoWayConverter it.value.toLong() },
-//      convertToVector = { AnimationVector1D(it.toFloat()) }
-//    )
-//}
-
 
 val Seconds = FloatPropKey()
 
@@ -60,8 +50,6 @@ fun Clock(
     val minute = calendar.get(Calendar.MINUTE) + second / 60f
     val hour = calendar.get(Calendar.HOUR) + minute / 60f
 
-    Log.e("myTag", "${calendar.get(Calendar.SECOND)}, ${state[Seconds]} $second")
-
     drawCircle(
       color = color,
       style = Stroke(width = strokeWidth.value),
@@ -69,29 +57,32 @@ fun Clock(
       radius = (size.width - strokeWidth.value) / 2,
     )
 
-    drawHand(
-      drawScope = this,
-      color = color,
-      strokeWidth = strokeWidth,
-      location = hour * speedMultiplier,
-      isHour = true
-    )
+    with(state[Seconds])
+    {
+      drawHand(
+        drawScope = this@Canvas,
+        color = color,
+        strokeWidth = strokeWidth,
+        location = hour * speedMultiplier,
+        isHour = true
+      )
 
-    drawHand(
-      drawScope = this,
-      color = color,
-      strokeWidth = strokeWidth,
-      location = minute * speedMultiplier,
-      isHour = false
-    )
+      drawHand(
+        drawScope = this@Canvas,
+        color = color,
+        strokeWidth = strokeWidth,
+        location = minute * speedMultiplier,
+        isHour = false
+      )
 
-    drawHand(
-      drawScope = this,
-      color = color,
-      strokeWidth = strokeWidth / 2,
-      location = second * speedMultiplier,
-      isHour = false
-    )
+      drawHand(
+        drawScope = this@Canvas,
+        color = color,
+        strokeWidth = strokeWidth / 2,
+        location = second * speedMultiplier,
+        isHour = false
+      )
+    }
   }
 }
 
