@@ -1,2 +1,7 @@
-# compose-clock
-Compose Clock
+# Compose Clock
+Simple Clock using Jetpack Compose Animation
+
+### Preview:
+
+![Clock-preview](public/preview.gif)
+![Clock-preview](public/preview-light.gif)
